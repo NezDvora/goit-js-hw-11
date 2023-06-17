@@ -2,7 +2,7 @@ import axios from "axios";
 
 const BASE_URL = 'https://pixabay.com/api/';
 const KEY = '37188665-acb3321e0243d96308bf1f96a';
-const PER_PAGE = 60;
+const PER_PAGE = 40;
 
 async function fetchQuery (query, page) {
     const params = new URLSearchParams ({
