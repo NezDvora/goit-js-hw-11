@@ -1,6 +1,6 @@
 import { fetchQuery, PER_PAGE } from './fetchQuery';
-import SimpleLightbox from 'simplelightbox';
-import 'simplelightbox/dist/simple-lightbox.min.css';
+import initializeSimpleLightbox from './simpleLightbox.js';
+import smoothScroll from './smoothScroll.js';
 import { Notify } from 'notiflix';
 
 const searchForm = document.querySelector('.search-form');
@@ -12,16 +12,9 @@ const options = {
 rootMargin: '0px',
 threshold: 1
 }
-
 const observer = new IntersectionObserver(observerCallback, options);
 
-let lightbox = new SimpleLightbox('.gallery div a', {
-captionsData: 'alt',
-captionPosition: 'bottom',
-captionDelay: 250,
-scrollZoom: false,
-});
-
+let lightbox = initializeSimpleLightbox();
 let page = 0;
 
 searchForm.addEventListener('submit', onSubmit);
@@ -97,15 +90,6 @@ return `
 }
 )
 .join('');
-}
-
-function smoothScroll(gallery, step) {
-const { height: cardHeight } =
-gallery.firstElementChild.getBoundingClientRect();
-window.scrollBy({
-top: cardHeight * step,
-behavior: 'smooth',
-});
 }
 
 function observerCallback(entries){
